@@ -1,4 +1,3 @@
-set guifont=Monaco:h10
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -8,61 +7,34 @@ set nu
 set nobackup
 set noundofile
 syntax enable
-set showcmd
+"set showcmd
 au GUIEnter * simalt ~x
 "colorscheme monokai
 set diffexpr=MyDiff()
-set cursorline " 光标横线
-set cursorcolumn " 光标竖线
-
-
+"set cursorline " 光标横线
+"set cursorcolumn " 光标竖线
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
 
-"Toggle Menu and Toolbar
-set guioptions-=m
-set guioptions-=T
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-        \set guioptions-=T <Bar>
-        \set guioptions-=m <bar>
-    \else <Bar>
-        \set guioptions+=T <Bar>
-        \set guioptions+=m <Bar>
-    \endif<CR>
-
-"if has("win32")
-"	set fileencoding=chinese
-"else
-"	set fileencoding=utf-8
-"endif
-let g:python_host_prog = "C:\\Develop\\Python27\\python.exe"
-let g:python3_host_prog = "C:\\Develop\\Python36\\python.exe"
-
 "vim-config
-call plug#begin('C:\Develop\Vim\plugged')
+call plug#begin('/home/test/.vim/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'bling/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'scrooloose/nerdtree'
 	"Plug 'SirVer/ultisnips'
 	"Plug 'honza/vim-snippets'
-	"Plug 'maralla/completor.vim'
-	" 配色方案
-	" colorscheme neodark
-	Plug 'KeitaNakamura/neodark.vim'
 	" colorscheme monokai
 	Plug 'crusoexia/vim-monokai'
-	" colorscheme github 
+	" colorscheme github
 	Plug 'acarapetis/vim-colors-github'
-	" colorscheme one 
+	" colorscheme one
 	Plug 'rakr/vim-one'
 	Plug 'tenfyzhong/CompleteParameter.vim'
-	"Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
+	Plug 'ycm-core/YouCompleteMe'
+	Plug 'mhinz/vim-startify'
 call plug#end()
 
-syntax enable
 " 配色方案, 可以从上面插件安装中的选择一个使用
 colorscheme monokai
 "colorscheme one
@@ -80,7 +52,7 @@ let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="c-n>"
+let g:UltiSnipsExpandTrigger="c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
@@ -167,4 +139,3 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
-

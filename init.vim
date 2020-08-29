@@ -1,168 +1,197 @@
-"set guifont=Monaco:h10
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
 set nu
-set nobackup
 set noundofile
 syntax enable
 set showcmd
 au GUIEnter * simalt ~x
 "colorscheme monokai
-set diffexpr=MyDiff()
 set cursorline " 光标横线
-set cursorcolumn " 光标竖线
-
-
+"set cursorcolumn " 光标竖线
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
-
-"Toggle Menu and Toolbar
-set guioptions-=m
-set guioptions-=T
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-        \set guioptions-=T <Bar>
-        \set guioptions-=m <bar>
-    \else <Bar>
-        \set guioptions+=T <Bar>
-        \set guioptions+=m <Bar>
-    \endif<CR>
-
-"if has("win32")
-"	set fileencoding=chinese
-"else
-"	set fileencoding=utf-8
-"endif
-let g:python_host_prog = "C:\\Develop\\Python27\\python.exe"
-let g:python3_host_prog = "C:\\Develop\\Python36\\python.exe"
-let g:ycm_server_python_interpreter = "C:\\Develop\\Python27\\python.exe"
-"vim-config
-call plug#begin('C:\Develop\Neovim\plugged')
+call plug#begin('~/.config/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'bling/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'scrooloose/nerdtree'
-	"Plug 'SirVer/ultisnips'
-	"Plug 'honza/vim-snippets'
-	"Plug 'maralla/completor.vim'
-	" 配色方案
-	" colorscheme neodark
-	Plug 'KeitaNakamura/neodark.vim'
-	" colorscheme monokai
 	Plug 'crusoexia/vim-monokai'
-	" colorscheme github 
 	Plug 'acarapetis/vim-colors-github'
-	" colorscheme one 
 	Plug 'rakr/vim-one'
-	Plug 'tenfyzhong/CompleteParameter.vim'
+	Plug 'honza/vim-snippets'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'mhinz/vim-startify'
+	Plug 'srcery-colors/srcery-vim'
+    Plug 'tomasr/molokai'
 call plug#end()
 
 syntax enable
-" 配色方案, 可以从上面插件安装中的选择一个使用
-colorscheme monokai
-"colorscheme one
 set background=dark
-"colorscheme gruvbox
-
 "highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-"highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
-"highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-"highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
-
-
 "Powerline setting
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
+"colorscheme srcery
+colorscheme molokai
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="c-n>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-" Use the internal diff if available.
-" Otherwise use the special 'diffexpr' for Windows.
-if &diffopt !~# 'internal'
-  set diffexpr=MyDiff()
-endif
+" if hidden is not set, TextEdit might fail.
+set hidden
 
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
 
-"youcompleteme
-let g:ycm_confirm_extra_conf=0
-set runtimepath+=C:\Develop\YouCompleteMe
-set completeopt=menu,menuone
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
+" Better display for messages
+set cmdheight=2
 
-" 开启语义补全
-let g:ycm_seed_identifiers_with_syntax=1
-" 在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
-noremap <c-z> <NOP>
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1,
-			\ "python":1,
-			\ "objc":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "zimbu":1,
-			\ }
-			
-"CompleteParameter.vim
-inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+" always show signcolumns
+set signcolumn=yes
 
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg1 = substitute(arg1, '!', '\!', 'g')
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg2 = substitute(arg2, '!', '\!', 'g')
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let arg3 = substitute(arg3, '!', '\!', 'g')
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      if empty(&shellxquote)
-        let l:shxq_sav = ''
-        set shellxquote&
-      endif
-      let cmd = '"' . $VIMRUNTIME . '\diff"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
   else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  let cmd = substitute(cmd, '!', '\!', 'g')
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-  if exists('l:shxq_sav')
-    let &shellxquote=l:shxq_sav
+    call CocAction('doHover')
   endif
 endfunction
 
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"let g:coc_snippet_next = '<tab>'
