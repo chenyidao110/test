@@ -13,6 +13,7 @@ set cursorline " 光标横线
 "set cursorcolumn " 光标竖线
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
+set relativenumber
 call plug#begin('~/.config/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'bling/vim-airline'
@@ -26,16 +27,20 @@ call plug#begin('~/.config/plugged')
 	Plug 'mhinz/vim-startify'
 	Plug 'srcery-colors/srcery-vim'
     Plug 'tomasr/molokai'
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'liuchengxu/space-vim-theme'
 call plug#end()
 
 syntax enable
-set background=dark
+"set background=dark
 "highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 "Powerline setting
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
+set background=light
+colorscheme space_vim_theme
 "colorscheme srcery
-colorscheme molokai
+"colorscheme molokai
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -195,3 +200,13 @@ function! s:check_back_space() abort
 endfunction
 
 "let g:coc_snippet_next = '<tab>'
+"defx
+call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'show_ignored_files': 0,
+      \ 'buffer_name': '',
+      \ 'toggle': 1,
+      \ 'resume': 1
+      \ })
