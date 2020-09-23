@@ -25,10 +25,10 @@ call plug#begin('~/.config/plugged')
 	Plug 'honza/vim-snippets'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'mhinz/vim-startify'
-	Plug 'srcery-colors/srcery-vim'
     Plug 'tomasr/molokai'
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'liuchengxu/space-vim-theme'
+    Plug 'srcery-colors/srcery-vim'
 call plug#end()
 
 syntax enable
@@ -38,9 +38,10 @@ syntax enable
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
 set background=light
-colorscheme space_vim_theme
-"colorscheme srcery
+"colorscheme space_vim_theme
+colorscheme srcery
 "colorscheme molokai
+
 
 " if hidden is not set, TextEdit might fail.
 set hidden
