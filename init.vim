@@ -25,10 +25,10 @@ call plug#begin('~/.config/plugged')
 	Plug 'honza/vim-snippets'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'mhinz/vim-startify'
-    Plug 'tomasr/molokai'
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'liuchengxu/space-vim-theme'
-    Plug 'srcery-colors/srcery-vim'
+        Plug 'tomasr/molokai'
+        Plug 'liuchengxu/space-vim-theme'
+        Plug 'srcery-colors/srcery-vim'
+	Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 syntax enable
@@ -38,9 +38,8 @@ syntax enable
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 1
 set background=light
-"colorscheme space_vim_theme
-colorscheme srcery
-"colorscheme molokai
+colorscheme space_vim_theme
+"colorscheme srcery
 
 
 " if hidden is not set, TextEdit might fail.
@@ -62,8 +61,13 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" coc.nvim settings
+
+let g:coc_global_extensions = ['coc-snippets', 'coc-pyright', 'coc-json']
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -201,13 +205,3 @@ function! s:check_back_space() abort
 endfunction
 
 "let g:coc_snippet_next = '<tab>'
-"defx
-call defx#custom#option('_', {
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
