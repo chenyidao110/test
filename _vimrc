@@ -29,11 +29,12 @@ set relativenumber
 filetype indent plugin on
 
 " vim 文件折叠方式为 marker
-augroup ft_vim
-    au!
+" 如需折叠，请取消augroup ft_vim到augroup END之间的注释
+"augroup ft_vim
+"    au!
 
-    au FileType vim setlocal foldmethod=marker
-augroup END
+"    au FileType vim setlocal foldmethod=marker
+"augroup END
 " }}}
 
 " General {{{
