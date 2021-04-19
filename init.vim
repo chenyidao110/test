@@ -1,3 +1,4 @@
+au VimEnter * GuiPopupmenu 0
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -14,7 +15,7 @@ set cursorline " 光标横线
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
 set relativenumber
-call plug#begin('~/.config/plugged')
+call plug#begin('C:\app\neovim\plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'bling/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -25,9 +26,9 @@ call plug#begin('~/.config/plugged')
 	Plug 'honza/vim-snippets'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'mhinz/vim-startify'
-    Plug 'tomasr/molokai'
-    Plug 'liuchengxu/space-vim-theme'
-    Plug 'srcery-colors/srcery-vim'
+       Plug 'tomasr/molokai'
+       Plug 'liuchengxu/space-vim-theme'
+       Plug 'srcery-colors/srcery-vim'
 	Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
