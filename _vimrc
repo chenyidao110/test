@@ -1,4 +1,4 @@
-""set font and fontsize
+"set font and fontsize
 set guifont=Sarasa_Fixed_Slab_SC:h12:cANSI
 
 call plug#begin('C:\app\Vim\plugged')
@@ -22,8 +22,10 @@ call plug#end()
 "default coc component
 let g:coc_global_extensions = ['coc-json','coc-pyright','coc-snippets']
 
-colorscheme srcery
-"set background=
+"colorscheme srcery
+set background=light
+colorscheme space_vim_theme
+let g:airline_theme = "solarized"
 set relativenumber
 " Startup {{{
 filetype indent plugin on
