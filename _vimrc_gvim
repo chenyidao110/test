@@ -31,7 +31,7 @@ set autoread
 set list
 set wildmenu
 set wildmode=longest:list,full
-colorscheme srcery
+"colorscheme srcery
 "不显示工具/菜单栏
 set guioptions-=T
 set guioptions-=m
