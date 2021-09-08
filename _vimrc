@@ -1,5 +1,51 @@
-"set font and fontsize
 set guifont=Sarasa_Fixed_Slab_SC:h12:cANSI
+set noerrorbells
+set number
+set nocompatible
+syntax on
+set showmode
+set showcmd
+set mouse=a
+set t_Co=256
+filetype indent on
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set relativenumber
+set cursorline
+set wrap
+set linebreak
+set wrapmargin=2
+set scrolloff=5
+set laststatus=2
+set ruler
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set autoread
+"set listchars=tab:»·,trail:·
+"set list
+set wildmenu
+set wildmode=longest:list,full
+"colorscheme srcery
+"不显示工具/菜单栏
+set guioptions-=T
+set guioptions-=m
+set guioptions-=L
+set guioptions-=r
+set guioptions-=b
+"启动时最大化
+au GUIEnter * simalt ~x
+
+"设置编码
+set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+set encoding=utf-8
+set langmenu=zh_CN
+let $LANG = 'en_US.UTF-8'
 
 call plug#begin('C:\app\Vim\plugged')
 	Plug 'morhetz/gruvbox'
@@ -26,169 +72,11 @@ let g:coc_global_extensions = ['coc-json','coc-pyright','coc-snippets']
 set background=light
 colorscheme space_vim_theme
 let g:airline_theme = "solarized"
-set relativenumber
-" Startup {{{
-filetype indent plugin on
 
-" vim 文件折叠方式为 marker
-" 如需折叠，请取消augroup ft_vim到augroup END之间的注释
-"augroup ft_vim
-"    au!
-
-"    au FileType vim setlocal foldmethod=marker
-"augroup END
-" }}}
-
-" General {{{
-set nocompatible
-set nobackup
-set noswapfile
-set history=1024
-set autochdir
-set whichwrap=b,s,<,>,[,]
-set nobomb
-set backspace=indent,eol,start whichwrap+=<,>,[,]
-" Vim 的默认寄存器和系统剪贴板共享
-set clipboard+=unnamed
-" 设置 alt 键不映射到菜单栏
-set winaltkeys=no
-" }}}
-
-" Lang & Encoding {{{
-set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
 set encoding=utf-8
-set langmenu=zh_CN
-let $LANG = 'en_US.UTF-8'
-"language messages zh_CN.UTF-8
-" }}}
 
-" GUI {{{
-"colorscheme Tomorrow-Night
-
-"source $VIMRUNTIME/delmenu.vim
-"source $VIMRUNTIME/menu.vim
-set cursorline
-set hlsearch
-set number
-" 窗口大小
-set lines=35 columns=140
-" 分割出来的窗口位于当前窗口下边/右边
-set splitbelow
-set splitright
-"不显示工具/菜单栏
-set guioptions-=T
-set guioptions-=m
-set guioptions-=L
-set guioptions-=r
-set guioptions-=b
-" 使用内置 tab 样式而不是 gui
-set guioptions-=e
-set nolist
-" set listchars=tab:▶\ ,eol:¬,trail:·,extends:>,precedes:<
-"set guifont=Inconsolata:h12:cANSI
-" }}}
-
-" Format {{{
-set autoindent
-set smartindent
-set shiftwidth=4
-set tabstop=4
-set expandtab
-set softtabstop=4
-"set foldmethod=indent "取消自动缩进折叠
-syntax on
-" }}}
-
-" Keymap {{{
-let mapleader=","
-
-nmap <leader>s :source $VIM/_vimrc<cr>
-nmap <leader>e :e $VIM/_vimrc<cr>
-
-map <leader>tn :tabnew<cr>
-map <leader>tc :tabclose<cr>
-map <leader>th :tabp<cr>
-map <leader>tl :tabn<cr>
-
-" 移动分割窗口
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" 正常模式下 alt+j,k,h,l 调整分割窗口大小
-nnoremap <M-j> :resize +5<cr>
-nnoremap <M-k> :resize -5<cr>
-nnoremap <M-h> :vertical resize -5<cr>
-nnoremap <M-l> :vertical resize +5<cr>
-
-" 插入模式移动光标 alt + 方向键
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <left>
-inoremap <M-l> <Right>
-
-" IDE like delete
-inoremap <C-BS> <Esc>bdei
-
-nnoremap vv ^vg_
-" 转换当前行为大写
-inoremap <C-u> <esc>mzgUiw`za
-" 命令模式下的行首尾
-cnoremap <C-a> <home>
-cnoremap <C-e> <end>
-
-nnoremap <F2> :setlocal number!<cr>
-nnoremap <leader>w :set wrap!<cr>
-
-imap <C-v> "+gP
-vmap <C-c> "+y
-vnoremap <BS> d
-vnoremap <C-C> "+y
-vnoremap <C-Insert> "+y
-imap <C-V>		"+gP
-map <S-Insert>		"+gP
-cmap <C-V>		<C-R>+
-cmap <S-Insert>		<C-R>+
-
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-
-" 打开当前目录 windows
-map <leader>ex :!start explorer %:p:h<CR>
-
-" 打开当前目录CMD
-map <leader>cmd :!start<cr>
-" 打印当前时间
-map <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
-
-" 复制当前文件/路径到剪贴板
-nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
-
-" 设置切换Buffer快捷键"
-nnoremap <C-left> :bn<CR>
-nnoremap <C-right> :bp<CR>
-
-" }}}
-
-" Function {{{
-" Remove trailing whitespace when writing a buffer, but not for diff files.
-" From: Vigil
-" @see http://blog.bs2.to/post/EdwardLee/17961
-function! RemoveTrailingWhitespace()
-    if &ft != "diff"
-        let b:curcol = col(".")
-        let b:curline = line(".")
-        silent! %s/\s\+$//
-        silent! %s/\(\s*\n\)\+\%$//
-        call cursor(b:curline, b:curcol)
-    endif
-endfunction
-autocmd BufWritePre * call RemoveTrailingWhitespace()
-" }}}
-
-"coc default configuration
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -208,7 +96,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
+if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
@@ -351,20 +239,25 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-"coc-snippets configuration
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
+
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
+
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
+
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
+
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
+"Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
