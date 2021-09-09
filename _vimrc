@@ -62,7 +62,6 @@ call plug#begin('C:\app\Vim\plugged')
 	Plug 'srcery-colors/srcery-vim'
 	Plug 'altercation/vim-colors-solarized'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'honza/vim-snippets'
 call plug#end()
 
 "default coc component
