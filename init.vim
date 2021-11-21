@@ -15,7 +15,7 @@ set cursorline " 光标横线
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
 set relativenumber
-call plug#begin('C:\app\neovim\plugged')
+call plug#begin('C:\Dev\neovim\plugged')
     	Plug 'morhetz/gruvbox'
     	Plug 'bling/vim-airline'
     	Plug 'vim-airline/vim-airline-themes'

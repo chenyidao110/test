@@ -47,7 +47,7 @@ set encoding=utf-8
 set langmenu=zh_CN
 let $LANG = 'en_US.UTF-8'
 
-call plug#begin('C:\app\Vim\plugged')
+call plug#begin('C:\Dev\Vim\plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'bling/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
